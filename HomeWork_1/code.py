@@ -49,8 +49,6 @@ def merry_christmas(pixels, slice = 3):
     cpx.pixels.fill(BLACK)
     
 while True:
-    lstate = cpx.button_a
-    rstate = cpx.button_b
     if cpx.button_a or cpx.button_b:
      print("Button A Pressed!")
      merry_christmas(cpx.pixels, 3)
