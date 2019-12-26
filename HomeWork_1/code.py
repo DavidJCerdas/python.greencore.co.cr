@@ -50,5 +50,4 @@ def merry_christmas(pixels, slice = 3):
     
 while True:
     if cpx.button_a or cpx.button_b:
-     print("Button A Pressed!")
      merry_christmas(cpx.pixels, 3)
