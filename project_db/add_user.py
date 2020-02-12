@@ -8,7 +8,6 @@ window.title("Add a new user")
 # DB postgres connector
 cnx=psycopg2.connect("dbname=lin_flask")
 cur=cnx.cursor()
-seguir=True
 
 # function to update the postgres DB
 def add_user():
