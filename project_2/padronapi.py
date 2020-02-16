@@ -93,7 +93,7 @@ def distrito(provincia_x,canton_x,codeX_x):
         content = {'Error de método': 'Sólo se soporta GET para distrito_x'}
         return content, status.HTTP_405_METHOD_NOT_ALLOWED
     
-@app.route('/api/v1/personas',methods=['POST', 'GET'])
+@app.route('/api/v1/personas',methods=['POST', 'GET', 'DELETE', 'PUT'])
 def personas():
     if request.method == 'GET':
         cur.execute("SELECT * FROM ciudadano LIMIT '100' OFFSET '0';")
