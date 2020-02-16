@@ -93,6 +93,30 @@ def distrito(provincia_x,canton_x,codeX_x):
         content = {'Error de método': 'Sólo se soporta GET para distrito_x'}
         return content, status.HTTP_405_METHOD_NOT_ALLOWED
     
+@app.route('/api/v1/personas',methods=['POST', 'GET'])
+def personas():
+    if request.method == 'GET':
+        cur.execute("SELECT * FROM ciudadano LIMIT '100' OFFSET '0';")
+        users = []
+        for persona in cur.fetchall():
+            data_to_show = {
+            'cedula': persona[0],
+            'vencimiento': persona[1],
+            'sexo': persona[2],
+            'nombre': persona[3],
+            'apellido1': persona[4],
+            'apellido2': persona[5],
+            'provincia': persona[6],
+            'canton': persona[7],
+            'distrito': persona[8],
+            'junta': str(persona[9]),
+            }
+            users.append(data_to_show)
+        return jsonify(users), status.HTTP_200_OK
+    else :
+        content = {'Error de método': 'Sólo se soporta GET para personas'}
+        return content, status.HTTP_405_METHOD_NOT_ALLOWED;
+    
 if __name__ == '__main__':
     app.debug = True
     app.run()
