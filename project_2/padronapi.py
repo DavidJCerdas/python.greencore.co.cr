@@ -68,7 +68,31 @@ def canton(code_y,code_x):
     else :
         content = {'Error de método': 'Sólo se soporta GET para canton_x'}
         return content, status.HTTP_405_METHOD_NOT_ALLOWED
-        
+
+@app.route('/api/v1/distrito/<string:provincia_x>/<string:canton_x>/<string:codeX_x>/', methods=['POST', 'GET', 'DELETE', 'PUT'])
+def distrito(provincia_x,canton_x,codeX_x):
+    code_y=str(provincia_x)
+    code_x=str(canton_x)	
+    code_z=str(codeX_x)	
+    distrito_x=[]
+    if request.method == 'GET':
+        cur.execute("SELECT * FROM distrito WHERE distrito.provincia = %s AND distrito.canton = %s AND distrito.codigo = %s;",(code_y, code_x, code_z))
+        distrito_x=cur.fetchone()
+        if distrito_x is None :
+            content = {'Error de código': 'La canton con el código {0} no existe.'.format(code_x)}
+            return content, status.HTTP_404_NOT_FOUND
+        else :
+            data_to_show = {
+                'provincia': distrito_x[0],
+                'canton': distrito_x[1],
+                'codigo': distrito_x[2],                
+                'nombre': distrito_x[3]
+            }
+            return jsonify(data_to_show), status.HTTP_200_OK
+    else :
+        content = {'Error de método': 'Sólo se soporta GET para distrito_x'}
+        return content, status.HTTP_405_METHOD_NOT_ALLOWED
+    
 if __name__ == '__main__':
     app.debug = True
     app.run()
