@@ -34,5 +34,6 @@ except Exception as e:
 print(f"Sending the email...")
 try:
     smtp_object.sendmail(from_addr, to_addrs, email_content)
+    smtp_object.quit()
 except Exception as e:
     print(f"Something went wrong sending the email:{e}")
