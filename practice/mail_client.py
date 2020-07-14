@@ -24,12 +24,14 @@ try:
     smtp_object.ehlo()
 except Exception as e:
     print(f"Something went wrong with the connection: {e}")
+    smtp_object.quit()
 
 print(f"loging into the account: {from_addr}")
 try:
     smtp_object.login(from_addr, password)
 except Exception as e:
     print(f"Something went wrong with the login to the email {from_addr}: {e}")
+    smtp_object.quit()    
 
 print(f"Sending the email...")
 try:
