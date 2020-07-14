@@ -26,14 +26,12 @@ except Exception as e:
     print(f"Something went wrong with the connection: {e}")
 
 print(f"loging into the account: {from_addr}")
-# loging into the account: from_addr
 try:
     smtp_object.login(from_addr, password)
 except Exception as e:
     print(f"Something went wrong with the login to the email {from_addr}: {e}")
 
 print(f"Sending the email...")
-# Sending the email
 try:
     smtp_object.sendmail(from_addr, to_addrs, email_content)
 except Exception as e:
